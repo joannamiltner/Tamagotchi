@@ -1,0 +1,76 @@
+
+@model Grumpson;
+<p>Name: @Model.name</p>
+
+
+@{
+    bool cannotClick = false;
+
+    if(Model.happiness <= 0 || Model.hunger <=0 || Model.play <=0 || Model.sleep <=0)
+    {
+        cannotClick=true;
+    }
+}
+
+
+<div class="center">
+<div class="buttons">
+        <a href="/feed"><button class="btn btn-danger btn-xs" disabled=@cannotClick>Feed</button></a>
+        <a href="/rest"><button class="btn btn-warning btn-xs" disabled=@cannotClick>Rest</button></a>
+        <a href="/pet"><button class="btn btn-info btn-xs" disabled=@cannotClick>Pet</button></a>
+        <a href="/toy"><button class="btn btn-success btn-xs" disabled=@cannotClick>Toy</button></a>
+</div>
+<br>
+<br>
+
+<div class="grumpson">
+    <img src="images/@Model.image" alt="Grumpson"></div>
+<br><br>
+
+<div class="bars">
+    <div class="one">
+        <div class="databar">
+            <div style="width: @Model.hunger%;"
+                valuenow="@Model.hunger" valuemin="0" valuemax="100">Hunger &nbsp</div>
+        </div>
+
+
+            <div class="margintop">
+        <div class="databar">
+            <div style="width: @Model.sleep%;"
+                valuenow="@Model.sleep" valuemin="0" valuemax="100">Sleep &nbsp</div>
+        </div>
+        </div>
+    </div>
+
+    <div class="two">
+        <div class="databar">
+            <div style="width: @Model.happiness%;"
+            valuenow="@Model.happiness" valuemin="0" valuemax="100">Happy &nbsp</div>
+        </div>
+
+            <div class="margintop">
+        <div class="databar">
+            <div style="width: @Model.play%;"
+            valuenow="@Model.play" valuemin="0" valuemax="100">Play &nbsp</div>
+        </div>
+        </div>
+
+          
+
+    </div>
+</div>
+
+
+
+<div class="ms">
+    <p>Message: @Model.message</p>
+</div>
+
+   @if(Model.happiness <= 0 || Model.hunger <=0 || Model.play <=0 || Model.sleep <=0)
+            {
+                <a href="/"><button class="btn btn-info btn-xs">RESTART</button></a>
+            }
+
+<br><br>
+</div>
